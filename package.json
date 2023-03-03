@@ -6,10 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit",
+    "lint": "prettier '(src/**/*.{tsx,ts,js}|*.{tsx,ts,js})' --write && eslint --ext js,jsx,ts,tsx --fix && next lint",
+    "test": "jest",
+    "postinstall": "husky install",
     "produce": "git checkout main && git pull origin main && git merge dev && git push && git checkout dev"
   },
   "dependencies": {
+    "@emotion/cache": "^11.10.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.11",
+    "@mui/styles": "^5.11.11",
     "@types/node": "18.14.4",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
@@ -19,5 +28,26 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "cache": "link:@types/@emotion/cache",
+    "postcss": "^8.4.21",
+    "sass": "^1.58.3",
+    "tailwindcss": "^3.2.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "(src/**/*.{tsx,ts,js}|*.{tsx,ts,js})": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{!(min).js,json,!(min).css,!(min).scss,md}": [
+      "prettier --write"
+    ]
   }
 }

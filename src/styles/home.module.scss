@@ -1,0 +1,32 @@
+@import 'constants';
+
+.Card {
+  // &::before {
+  //   @include before-or-after($bg: rgba(0, 0, 0, 0.1));
+  // }
+  perspective: 10rem;
+
+  img {
+    transform: translate(50%, -50%);
+  }
+
+  &:hover {
+    img {
+      transform: translate(50%, -50%) scale(1.2) rotateY(9deg) rotateZ(-2deg);
+    }
+
+    .tray {
+      opacity: 0;
+    }
+  }
+}
+
+.tray {
+  transform: translateY(5.5rem);
+
+  &:hover {
+    opacity: 1 !important;
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
