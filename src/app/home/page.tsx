@@ -6,7 +6,7 @@ import { Button } from '@mui/material';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import { Stack, Text } from 'src/components';
+import { Stack, Text } from 'src/components/shared';
 import { Card, BottomBar } from 'src/components/home';
 
 const getShirts = () => {

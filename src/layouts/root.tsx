@@ -4,7 +4,7 @@ import { Armata } from 'next/font/google';
 import StylesProvider from '@mui/styles/StylesProvider';
 
 import 'src/styles/index.scss';
-import { Stack, Text } from 'src/components';
+import { Stack, Text } from 'src/components/shared';
 import RootStyleRegistry from './__emotion';
 
 const inter = Armata({ subsets: ['latin'], weight: '400' });

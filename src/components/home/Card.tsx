@@ -4,7 +4,7 @@ import { IconButton } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
 
 import S from 'src/styles/home.module.scss';
-import { Img, Skeleton, Stack, Text } from 'src/components';
+import { Img, Skeleton, Stack, Text } from 'src/components/shared';
 
 const _Card: FC<{ name: string; image_url: string; index: number }> = ({
   name,

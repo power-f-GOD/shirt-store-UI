@@ -2,7 +2,7 @@ import { Check } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { memo } from 'react';
 
-import { Stack, Text } from 'src/components';
+import { Stack, Text } from 'src/components/shared';
 
 const _BottomBar = () => {
   return (
