@@ -1,7 +1,7 @@
-import { memo, forwardRef } from "react";
+import { memo, forwardRef } from 'react';
 
-import { StackProps } from "src/types";
-import { View } from "./View";
+import { StackProps } from 'src/types';
+import { View } from './View';
 
 const _Stack = forwardRef<HTMLElement, StackProps>(
   (
@@ -57,8 +57,8 @@ const _Stack = forwardRef<HTMLElement, StackProps>(
         {...restProps}
         ref={ref}
         className={`Stack flex${
-          !className?.includes("flex-row") ? " flex-col" : ""
-        } ${className || ""}`}
+          !className?.includes('flex-row') ? ' flex-col' : ''
+        } ${className || ''}`}
         style={{
           alignItems: align,
           width,
@@ -98,7 +98,7 @@ const _Stack = forwardRef<HTMLElement, StackProps>(
           borderRight: border,
           animationDelay,
           animationTimingFunction,
-          ...(style || {}),
+          ...(style || {})
         }}>
         {children}
       </Component>
@@ -106,6 +106,6 @@ const _Stack = forwardRef<HTMLElement, StackProps>(
   }
 );
 
-_Stack.displayName = "_Stack";
+_Stack.displayName = '_Stack';
 
 export const Stack = memo(_Stack);

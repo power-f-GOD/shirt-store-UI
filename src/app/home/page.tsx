@@ -1,12 +1,9 @@
 /** @jsxImportSource @emotion/react */
 'use client';
 
-import { Check } from '@mui/icons-material';
-import { Button } from '@mui/material';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import { Stack, Text } from 'src/components/shared';
+import { Stack } from 'src/components/shared';
 import { Card, BottomBar } from 'src/components/home';
 
 const getShirts = () => {

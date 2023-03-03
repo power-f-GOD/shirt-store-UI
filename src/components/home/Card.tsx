@@ -1,5 +1,4 @@
-import { memo, FC, useCallback, ReactEventHandler } from 'react';
-import Image from 'next/image';
+import { memo, FC } from 'react';
 import { IconButton } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
 

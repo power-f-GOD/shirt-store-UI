@@ -1,4 +1,4 @@
-import { memo, FC, useCallback, ReactEventHandler, forwardRef } from 'react';
+import { memo, useCallback, ReactEventHandler, forwardRef } from 'react';
 import Image from 'next/image';
 
 const _Img: typeof Image = forwardRef(({ className, ...props }, ref) => {
