@@ -1,19 +1,60 @@
-import { memo, FC } from 'react';
+import { memo, FC, useCallback, Dispatch } from 'react';
 import { IconButton } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
 
 import S from 'src/styles/home.module.scss';
 import { Img, Skeleton, Stack, Text } from 'src/components/shared';
+import { Action, ItemProps } from 'src/types';
 
-const _Card: FC<{ name: string; image_url: string; index: number }> = ({
-  name,
-  image_url,
-  index
-}) => {
+const _Card: FC<
+  ItemProps & {
+    name: string;
+    image_url?: string;
+    index: number;
+    discount: number;
+    dispatch: Dispatch<Action>;
+  }
+> = (props) => {
+  const {
+    name,
+    image_url,
+    index,
+    discount,
+    price,
+    actual_cost,
+    cost,
+    count,
+    dispatch
+  } = props;
+
+  const handleRemoveItem = useCallback(() => {
+    if (!name || count! <= 0) return;
+    dispatch({
+      type: 'Remove',
+      payload: {
+        name,
+        price: 8
+      }
+    });
+  }, [name, count, dispatch]);
+
+  const handleAddItem = useCallback(() => {
+    if (!name || count! >= 30) return;
+    dispatch({
+      type: 'Add',
+      payload: {
+        name,
+        price: 8
+      }
+    });
+  }, [name, count, dispatch]);
+
   return (
     <Stack
       as="li"
-      className={`${S.Card} relative transition m-0 h-80 rounded-2xl border border-solid overflow-clip bg-black/5 border-black/5 anim__fadeInUpTiny`}
+      className={`${S.Card} ${
+        count ? S.added : ''
+      } relative transition m-0 h-80 rounded-2xl border border-solid overflow-clip bg-black/5 border-black/5 anim__fadeInUpTiny`}
       animationDelay={`${index * 0.125}s`}>
       {name ? (
         <Img
@@ -32,28 +73,42 @@ const _Card: FC<{ name: string; image_url: string; index: number }> = ({
 
         <Stack className="ml-auto">
           <Text as="small">Price:</Text>
-          <Text className="font-bold text-3xl">$8</Text>
+          <Text className="font-bold text-3xl">${price || 0}</Text>
         </Stack>
 
-        <Stack className="flex-row items-center justify-center gap-3 border-0 border-t border-solid pt-5 mt-5 w-full col-span-3 border-black/10">
+        <Stack className="flex-row items-end justify-center gap-1.5 border-0 border-t border-solid pt-5 mt-5 w-full col-span-3 border-black/10">
           <Stack className="mr-auto">
             <Text as="small" className="text-xs">
               Total Amount:
             </Text>
-            <Text className="font-bold text-lg">
-              <Text className="">$24</Text>
-              <Text className="opacity-40 ml-2 line-through">$24</Text>
-              <Text as="small" className="text-red-500 text-xs ml-2">
-                (-10%)
-              </Text>
+            <Text className="font-bold text-lg truncate">
+              <Text className="">${cost || 0}</Text>
+              {!!actual_cost && (
+                <>
+                  <Text className="opacity-40 ml-2 text-base line-through">
+                    ${actual_cost || 0}
+                  </Text>
+                  <Text as="small" className="text-red-500 text-xs ml-2">
+                    (-{discount * 100}%)
+                  </Text>
+                </>
+              )}
             </Text>
           </Stack>
 
-          <IconButton className="border border-solid border-black/10 w-10 h-10">
+          <IconButton
+            className="border border-solid border-black/10 w-8 h-8"
+            onClick={handleRemoveItem}>
             <Remove />
           </IconButton>
-          <Text className="text-lg">3</Text>
-          <IconButton className="border border-solid border-black/10 w-10 h-10">
+          <Text
+            className="text-lg justify-center inline-flex"
+            style={{ minWidth: `${count?.toString().length || 1}ch` }}>
+            {count || 0}
+          </Text>
+          <IconButton
+            className="border border-solid border-black/10 w-8 h-8"
+            onClick={handleAddItem}>
             <Add />
           </IconButton>
         </Stack>

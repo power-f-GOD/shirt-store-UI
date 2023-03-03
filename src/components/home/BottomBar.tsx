@@ -1,10 +1,13 @@
 import { Check } from '@mui/icons-material';
 import { Button } from '@mui/material';
-import { memo } from 'react';
+import { memo, FC } from 'react';
 
 import { Stack, Text } from 'src/components/shared';
+import { BasketProps } from 'src/types';
 
-const _BottomBar = () => {
+const _BottomBar: FC<
+  Pick<BasketProps, 'actual_cost' | 'cost' | 'item_count'>
+> = ({ actual_cost, item_count, cost }) => {
   return (
     <Stack
       as="footer"
@@ -12,10 +15,17 @@ const _BottomBar = () => {
       animationDelay={`${0.125 * 8}s`}>
       <Stack className="">
         <Text as="small" className="text-xs">
-          24 items
+          {item_count} item{item_count === 1 ? '' : 's'}
         </Text>
 
-        <Text className="font-bold text-2xl">$60</Text>
+        <Stack className="font-bold flex-row items-end gap-1.5">
+          <Text className="text-2xl">${cost}</Text>
+          {!!actual_cost && (
+            <Text className="text-base opacity-50 line-through">
+              ${actual_cost}
+            </Text>
+          )}
+        </Stack>
       </Stack>
 
       <Button
