@@ -3,6 +3,6 @@ import { httpStatusPropsState } from './shared';
 
 export const shirtsState: ShirtsActionPayload = {
   ...httpStatusPropsState,
-  data: [],
+  data: [{}, {}, {}, {}, {}],
   extra: {}
 };

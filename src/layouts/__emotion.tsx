@@ -1,9 +1,13 @@
 'use client';
+
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { useServerInsertedHTML } from 'next/navigation';
 import { useState } from 'react';
 
+/**
+ * For the purpose of this component, see this comment (on an issue) on GitHub: https://github.com/emotion-js/emotion/issues/2928#issuecomment-1293012737
+ */
 export default function RootStyleRegistry({
   children
 }: {

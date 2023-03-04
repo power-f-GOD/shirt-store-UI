@@ -1,8 +1,8 @@
 import { FetchProps } from './shared';
 
-export type ShirtsActionPayload = FetchProps<APIShirtSeedProps[]>;
+export type ShirtsActionPayload = FetchProps<Partial<APIShirtProps>[]>;
 
-export interface APIShirtSeedProps {
+export interface APIShirtProps {
   _id: string;
   name: string;
   price: number;

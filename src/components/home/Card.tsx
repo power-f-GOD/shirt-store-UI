@@ -4,16 +4,16 @@ import { Add, Remove } from '@mui/icons-material';
 
 import S from 'src/styles/home.module.scss';
 import { Img, Skeleton, Stack, Text } from 'src/components/shared';
-import { Action, ItemProps } from 'src/types';
+import { Action, APIShirtProps, ItemProps } from 'src/types';
+import { IMG_BASE_URL } from 'src/constants';
 
 const _Card: FC<
-  ItemProps & {
-    name: string;
-    image_url?: string;
-    index: number;
-    discount: number;
-    dispatch: Dispatch<Action>;
-  }
+  Omit<ItemProps, 'name' | 'price'> &
+    Partial<APIShirtProps> & {
+      index: number;
+      discount: number;
+      dispatch: Dispatch<Action>;
+    }
 > = (props) => {
   const {
     name,
@@ -56,10 +56,10 @@ const _Card: FC<
         count ? S.added : ''
       } relative transition m-0 h-80 rounded-2xl border border-solid overflow-clip bg-black/5 border-black/5 anim__fadeInUpTiny`}
       animationDelay={`${index * 0.125}s`}>
-      {name ? (
+      {image_url ? (
         <Img
-          className="transition duration-300"
-          src={image_url || `/${name.replace(' ', '-')}.png`}
+          className="transition duration-300 anim__fadeIn"
+          src={`${IMG_BASE_URL}${image_url}`}
           alt={`${name} shirt`}
         />
       ) : (
@@ -73,7 +73,9 @@ const _Card: FC<
 
         <Stack className="ml-auto">
           <Text as="small">Price:</Text>
-          <Text className="font-bold text-3xl">${price || 0}</Text>
+          <Text className="font-bold text-3xl">
+            {price ? `$${price}` : <Skeleton height="1em" className="-mb-1" />}
+          </Text>
         </Stack>
 
         <Stack className="flex-row items-end justify-center gap-1.5 border-0 border-t border-solid pt-5 mt-5 w-full col-span-3 border-black/10">
