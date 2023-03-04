@@ -9,6 +9,7 @@ import {
   LabelHTMLAttributes,
   MutableRefObject
 } from 'react';
+import { ItemProps } from './home';
 
 export interface APIBaseResponse<T> {
   message?: string;
@@ -18,9 +19,9 @@ export interface APIBaseResponse<T> {
   extra?: any;
 }
 
-export interface ActionProps<T> {
-  type: string;
-  payload?: T;
+export interface Action<Payload = ItemProps, Type extends string = string> {
+  type: Type;
+  payload: Payload;
 }
 
 export interface FetchProps<

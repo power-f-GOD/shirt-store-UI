@@ -1,6 +1,10 @@
+import { BasketProps } from './home';
 import { FetchProps } from './shared';
 
-export type OrdersActionPayload = FetchProps<APIOrderProps[]>;
+export type OrdersActionPayload = FetchProps<
+  APIOrderProps[],
+  Partial<BasketProps>
+>;
 
 export interface APIOrderItemProps {
   name: string;

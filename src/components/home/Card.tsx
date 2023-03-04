@@ -1,53 +1,61 @@
-import { memo, FC, useCallback, Dispatch } from 'react';
+import { memo, FC, useCallback, Dispatch, useState } from 'react';
 import { IconButton } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
 
 import S from 'src/styles/home.module.scss';
 import { Img, Skeleton, Stack, Text } from 'src/components/shared';
-import { Action, APIShirtProps, ItemProps } from 'src/types';
+import { Action, APIShirtProps } from 'src/types';
 import { IMG_BASE_URL } from 'src/constants';
+import { shallowEqual } from 'react-redux';
+import { useTypedSelector } from 'src/redux';
 
 const _Card: FC<
-  Omit<ItemProps, 'name' | 'price'> &
-    Partial<APIShirtProps> & {
-      index: number;
-      discount: number;
-      dispatch: Dispatch<Action>;
-    }
+  Partial<APIShirtProps> & {
+    index: number;
+    dispatch: Dispatch<Action>;
+  }
 > = (props) => {
-  const {
-    name,
-    image_url,
-    index,
-    discount,
-    price,
-    actual_cost,
-    cost,
-    count,
-    dispatch
-  } = props;
+  const { name, image_url, index, price, dispatch } = props;
+  const { discount, item } = useTypedSelector(
+    (state) => ({
+      discount: state.orders.extra?.discount || 0,
+      item: name ? state.orders.extra?.items?.[name] : null
+    }),
+    shallowEqual
+  );
+  const [count, setCount] = useState(0);
+  const { actual_cost, cost } = item || {};
 
-  const handleRemoveItem = useCallback(() => {
-    if (!name || count! <= 0) return;
-    dispatch({
-      type: 'Remove',
-      payload: {
-        name,
-        price: 8
-      }
-    });
-  }, [name, count, dispatch]);
+  const handleChangeItem = useCallback(
+    (type: Action['type']) => () => {
+      setCount((prev) => {
+        const isAdd = type === 'Add';
 
-  const handleAddItem = useCallback(() => {
-    if (!name || count! >= 30) return;
-    dispatch({
-      type: 'Add',
-      payload: {
-        name,
-        price: 8
-      }
-    });
-  }, [name, count, dispatch]);
+        if (!name || (!isAdd && prev! <= 0) || (isAdd && prev! >= 30)) {
+          return prev;
+        }
+
+        const count = prev + (isAdd ? 1 : -1);
+
+        // Ensure to defer setState/dispatch to prevent the (bad setState) console error
+        setTimeout(() => {
+          dispatch({
+            type,
+            payload: {
+              name,
+              price: 8,
+              count
+            }
+          });
+        });
+
+        return count;
+      });
+    },
+    [name, dispatch]
+  );
+
+  console.log({ count });
 
   return (
     <Stack
@@ -100,7 +108,7 @@ const _Card: FC<
 
           <IconButton
             className="border border-solid border-black/10 w-8 h-8"
-            onClick={handleRemoveItem}>
+            onClick={handleChangeItem('Remove')}>
             <Remove />
           </IconButton>
           <Text
@@ -110,7 +118,7 @@ const _Card: FC<
           </Text>
           <IconButton
             className="border border-solid border-black/10 w-8 h-8"
-            onClick={handleAddItem}>
+            onClick={handleChangeItem('Add')}>
             <Add />
           </IconButton>
         </Stack>

@@ -1,13 +1,12 @@
-/** @jsxImportSource @emotion/react */
 'use client';
 
 import { Reducer, useEffect, useReducer } from 'react';
+import { shallowEqual } from 'react-redux';
 
-import { Stack } from 'src/components/shared';
+import { Stack } from 'src/components/shared/Stack';
 import { Card, BottomBar } from 'src/components/home';
 import { Action, BasketProps, ItemProps } from 'src/types';
-import { fetchShirts } from 'src/services';
-import { useTypedSelector } from 'src/redux';
+import { useTypedSelector } from 'src/redux/store';
 
 // const computeCostsAfterDiscount = (itemMap: BasketProps['items']) => {
 //   const items = Object.values(itemMap);
@@ -27,10 +26,10 @@ const reducer = (
     ...structuredClone(state),
     item_count: state.item_count + diff
   };
-  const item: ItemProps = { ...payload, ...state.items[payload.name] };
+  const item: ItemProps = { ...state.items[payload.name], ...payload };
 
-  item.count = (item.count ?? 0) + diff;
-  if (item.count <= 0) item.count = 0;
+  // item.count = (item.count ?? 0) + diff;
+  // if (item.count <= 0) item.count = 0;
   item.actual_cost = item.count * item.price;
 
   // const [cost1, cost2] = computeCostsAfterDiscount(update.items);
@@ -51,7 +50,13 @@ const reducer = (
 };
 
 const Home = () => {
-  const shirts = useTypedSelector((state) => state.shirts.data);
+  const { shirts } = useTypedSelector(
+    (state) => ({
+      shirts: state.shirts.data,
+      order: state.orders.extra
+    }),
+    shallowEqual
+  );
   const [basket, dispatch] = useReducer<Reducer<BasketProps, Action>>(reducer, {
     items: {},
     item_count: 0,
@@ -61,7 +66,7 @@ const Home = () => {
   });
 
   useEffect(() => {
-    fetchShirts();
+    import('src/services/seed').then(({ fetchShirts }) => fetchShirts());
   }, []);
 
   return (
@@ -71,19 +76,13 @@ const Home = () => {
           as="ul"
           className={`grid m-0 px-5 gap-5 list-none w-full max-w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`}>
           {shirts!.map(({ name, image_url, price }, i) => {
-            const { actual_cost, cost, count } = basket.items[name || ''] || {};
-
             return (
               <Card
                 key={i}
                 index={i + 1}
                 name={name}
-                cost={cost}
                 price={price}
                 image_url={image_url}
-                count={count}
-                discount={basket.discount}
-                actual_cost={actual_cost}
                 dispatch={dispatch}
               />
             );

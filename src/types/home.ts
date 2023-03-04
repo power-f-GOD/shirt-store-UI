@@ -1,6 +1,6 @@
 export interface ItemProps {
   name: string;
-  count?: number;
+  count: number;
   cost?: number;
   actual_cost?: number;
   price: number;
@@ -13,9 +13,4 @@ export interface BasketProps {
   actual_cost: number;
   cost: number;
   discount: number;
-}
-
-export interface Action<Payload = ItemProps, Type = 'Add' | 'Remove'> {
-  type: Type;
-  payload: Payload;
 }

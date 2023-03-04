@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
-import { ActionProps, APIBaseResponse, HttpStatusProps } from 'src/types';
+import { Action, APIBaseResponse, HttpStatusProps } from 'src/types';
 import { API_BASE_URL, DEVELOPMENT, HTTP_BASE_URL } from 'src/constants';
 import { dispatch } from 'src/redux/store';
 import { snackbar } from 'src/redux/slices/misc';
@@ -95,7 +95,7 @@ export class Http {
 
   static logError(
     error: any,
-    action?: (arg: HttpStatusProps) => ActionProps<HttpStatusProps>
+    action?: (arg: HttpStatusProps) => Action<HttpStatusProps>
   ) {
     const message = /network|connection|internet/i.test(error.message || error)
       ? "Hm.🤔 Something went wrong. Kindly check that you're connected to the internet."
