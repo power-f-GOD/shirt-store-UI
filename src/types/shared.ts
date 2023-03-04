@@ -10,6 +10,33 @@ import {
   MutableRefObject
 } from 'react';
 
+export interface APIBaseResponse<T> {
+  message?: string;
+  data?: T;
+  error?: string;
+  statusCode: number;
+  extra?: any;
+}
+
+export interface ActionProps<T> {
+  type: string;
+  payload?: T;
+}
+
+export interface FetchProps<
+  Data,
+  Extra extends Record<string, any> = Record<string, any>
+> extends HttpStatusProps {
+  data?: Data;
+  extra?: Extra;
+}
+
+export interface HttpStatusProps {
+  status?: 'inert' | 'pending' | 'fulfilled';
+  err?: boolean;
+  message?: string;
+}
+
 export interface SkeletonProps {
   type?: 'circle' | 'box';
   variant?: 'grey' | 'white';
