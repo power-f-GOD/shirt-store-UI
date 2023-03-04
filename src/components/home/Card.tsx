@@ -6,7 +6,6 @@ import S from 'src/styles/home.module.scss';
 import { Img, Skeleton, Stack, Text } from 'src/components/shared';
 import { Action, APIShirtProps } from 'src/types';
 import { IMG_BASE_URL } from 'src/constants';
-import { shallowEqual } from 'react-redux';
 import { useTypedSelector } from 'src/redux';
 
 const _Card: FC<
@@ -21,7 +20,7 @@ const _Card: FC<
       discount: state.orders.extra?.discount || 0,
       item: name ? state.orders.extra?.items?.[name] : null
     }),
-    shallowEqual
+    (a, b) => a.item?.cost === b.item?.cost && a.discount === b.discount
   );
   const [count, setCount] = useState(0);
   const { actual_cost, cost } = item || {};
@@ -38,24 +37,13 @@ const _Card: FC<
         const count = prev + (isAdd ? 1 : -1);
 
         // Ensure to defer setState/dispatch to prevent the (bad setState) console error
-        setTimeout(() => {
-          dispatch({
-            type,
-            payload: {
-              name,
-              price: 8,
-              count
-            }
-          });
-        });
+        setTimeout(() => dispatch({ type, payload: { name, count } }));
 
         return count;
       });
     },
     [name, dispatch]
   );
-
-  console.log({ count });
 
   return (
     <Stack

@@ -7,17 +7,18 @@ import StylesProvider from '@mui/styles/StylesProvider';
 import { Provider as ReduxProvider } from 'react-redux';
 import { useEffect } from 'react';
 
-// import { initSocket } from 'src/socket/init';
 import 'src/styles/index.scss';
 import store from 'src/redux/store';
-import { Stack, Text } from 'src/components/shared';
+import { Stack } from 'src/components/shared/Stack';
+import { Text } from 'src/components/shared/Text';
 import RootStyleRegistry from './__emotion';
 
 const inter = Armata({ subsets: ['latin'], weight: '400' });
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
-    // initSocket()
+    // Lazyload module (as we need `socket` only on the front-end), so no need fetching upfront, hence foster fast (initial) app load
+    import('src/socket/init').then(({ initSocket }) => initSocket());
   }, []);
 
   return (

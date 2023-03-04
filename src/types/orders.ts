@@ -1,13 +1,13 @@
-import { BasketProps } from './home';
 import { FetchProps } from './shared';
 
 export type OrdersActionPayload = FetchProps<
   APIOrderProps[],
-  Partial<BasketProps>
+  Partial<APIOrderProps>
 >;
 
 export interface APIOrderItemProps {
-  name: string;
+  _id?: string;
+  name?: string;
   count: number;
   cost?: number;
   actual_cost?: number;
@@ -15,9 +15,9 @@ export interface APIOrderItemProps {
 }
 
 export interface APIOrderProps {
-  _id: string;
-  items: APIOrderItemProps[];
-  item_count: number;
+  _id?: string;
+  items?: Record<string, APIOrderItemProps>;
+  item_count?: number;
   actual_cost: number;
   cost: number;
   discount: number;

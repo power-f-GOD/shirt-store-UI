@@ -7,3 +7,7 @@
 @include anim__('fadeIn', '', '');
 @include anim__('fadeIn', 'Up', 'Tiny');
 @include anim__('fadeIn', 'Up', 'Big');
+
+.anim__fadeIn {
+  animation-timing-function: ease;
+}
