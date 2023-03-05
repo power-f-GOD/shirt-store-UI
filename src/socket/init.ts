@@ -12,6 +12,7 @@ import { miscRouter } from './misc.router';
 import { DEVELOPMENT, WS_BASE_URL } from 'src/constants/misc';
 import { Http } from 'src/utils/http';
 import { SocketProps } from 'src/types/misc';
+import { log } from 'src/utils';
 
 export let socket: ReturnType<typeof io> | null = null;
 
@@ -24,18 +25,18 @@ export const initSocket = (onAfterInit?: (socket: SocketProps) => void) => {
     activateSocketRouters();
   });
   socket!.on('connect', () => {
-    console.log('Sockets shook hands!');
+    log(`Sockets shook hands on ${WS_BASE_URL}! <${socket!.id}>`);
     if (onAfterInit) onAfterInit(socket);
   });
   socket!.on('disconnect', () => {
-    console.log('Sockets called it a day!');
+    log('Sockets called it a day!');
   });
 };
 
 export const openSocket = () => {
   if (socket?.connected) return;
 
-  //ensure to init `io` only once to avoid duplicate/multiple socket instances
+  // ensure to init `io` only once to avoid duplicate/multiple socket instances
   if (!socket) {
     socket = io(WS_BASE_URL, {
       transports: ['websocket', 'polling'], // use WebSocket first, if available,
@@ -62,7 +63,7 @@ export const activateSocketRouters = () => {
 
   socket.onAny(
     (eventName: SocketEventsEnum, payload: SocketResponsePayload) => {
-      console.log(eventName, payload, 'ONANY');
+      log(eventName, payload, 'ONANY');
       switch (eventName) {
         case SocketEventsEnum.ORDER:
           ordersPath(payload as SocketResponsePayload<any>);
@@ -93,11 +94,10 @@ export const socketEmit = <
     return;
   }
 
-  if (socket?.connected) {
-    emit(socket);
-  } else {
+  if (socket?.connected) emit(socket);
+  else {
     if (DEVELOPMENT) {
-      console.log(
+      log(
         `Error: Could not emit event: '${eventName}': Sockets not connected.`
       );
     }
@@ -106,3 +106,5 @@ export const socketEmit = <
     else socket.connect();
   }
 };
+
+if (globalThis.window) initSocket();

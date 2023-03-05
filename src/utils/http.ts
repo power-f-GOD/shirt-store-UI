@@ -4,6 +4,7 @@ import { Action, APIBaseResponse, HttpStatusProps } from 'src/types';
 import { API_BASE_URL, DEVELOPMENT, HTTP_BASE_URL } from 'src/constants';
 import { dispatch } from 'src/redux/store';
 import { snackbar } from 'src/redux/slices/misc';
+import { log } from './misc';
 
 export class Http {
   static token?: string | null = null;
@@ -127,7 +128,7 @@ export class Http {
     }
 
     if (DEVELOPMENT) {
-      console.log(
+      log(
         `[${action?.name || 'unknown'}] An error occured: `,
         error?.message || error
       );
