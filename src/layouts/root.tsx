@@ -5,16 +5,25 @@
 import { Armata } from 'next/font/google';
 import StylesProvider from '@mui/styles/StylesProvider';
 import { Provider as ReduxProvider } from 'react-redux';
+import { useState, useEffect } from 'react';
 
 import 'src/styles/index.scss';
 import store from 'src/redux/store';
 import { Stack } from 'src/components/shared/Stack';
 import { Text } from 'src/components/shared/Text';
+import { AppSnackbar } from 'src/components/AppSnackbar';
 import RootStyleRegistry from './__emotion';
 
 const inter = Armata({ subsets: ['latin'], weight: '400' });
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  // This is to fix server-client hydration errors logged in browser console
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <html lang="en">
       <body className={`${inter.className} max-w-5xl mx-auto`}>
@@ -24,6 +33,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <Text as="h1">Shirt Store</Text>
         </Stack>
         {children}
+        {isMounted && <AppSnackbar />}
       </body>
     </html>
   );

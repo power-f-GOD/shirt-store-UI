@@ -16,7 +16,7 @@ const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
   return (
     <Stack
       as="footer"
-      className="sticky bottom-0 z-30 p-5 py-3 mt-5 flex-row w-full max-w-xl mx-auto justify-between items-center bg-white/90 backdrop-blur-sm border-t border-b-0 border-solid border-gray-200 rounded-tl-2xl rounded-tr-2xl anim__fadeInUpBig sm:rounded-2xl sm:bottom-5 sm:border sm:shadow-lg sm:shadow-black/5 lg:mt-24 lg:py-4"
+      className="sticky bottom-0 z-30 p-5 py-3 mt-20 flex-row w-full max-w-xl mx-auto justify-between items-center bg-white/90 backdrop-blur-sm border-t border-b-0 border-solid border-gray-200 rounded-tl-2xl rounded-tr-2xl anim__fadeInUpBig sm:rounded-2xl sm:bottom-8 sm:border sm:shadow-lg sm:shadow-black/5 lg:mt-24 lg:py-4"
       animationDelay={`${0.125 * 8}s`}>
       <Stack className="">
         <Text as="small" className="text-xs">
@@ -35,8 +35,8 @@ const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
 
       <Button
         variant="contained"
-        className="bg-black py-3 rounded-xl hover:bg-black/70 lg:py-3.5 lg:px-6">
-        Checkout <Check className="ml-1.5" />
+        className="bg-black py-3 px-5 rounded-xl hover:bg-black/70 lg:py-3.5 lg:px-6">
+        Checkout <Check className="ml-1 w-5" />
       </Button>
     </Stack>
   );

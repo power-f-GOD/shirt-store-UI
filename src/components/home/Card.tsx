@@ -61,8 +61,9 @@ const _Card: FC<
       ) : (
         <Skeleton className="w-full h-full" />
       )}
+
       <Stack
-        className={`${S.tray} absolute bottom-0 w-full grid transition-all duration-300 grid-cols-3 flex-row p-5 items-end justify-between pt-5 bg-white/60 backdrop-blur-sm`}>
+        className={`${S.tray} absolute bottom-0 w-full grid transition-all duration-300 grid-cols-3 flex-row p-5 items-end justify-between pt-5 bg-white/70 backdrop-blur-sm`}>
         <Text as="h2" className="col-span-2 text-xl">
           {name || <Skeleton height="1em" className="w-full" />}
         </Text>

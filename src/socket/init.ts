@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
-import { getState } from 'src/redux/store';
+import { dispatch, getState } from 'src/redux/store';
 import {
   SocketEventsEnum,
   SocketPathsEnum,
@@ -9,12 +9,22 @@ import {
 import { normalizeSocketPayload } from './__utils';
 import { ordersPath } from './orders.path';
 import { miscRouter } from './misc.router';
-import { DEVELOPMENT, WS_BASE_URL } from 'src/constants/misc';
+import { DEVELOPMENT, HTTP_BASE_URL } from 'src/constants/misc';
 import { Http } from 'src/utils/http';
-import { SocketProps } from 'src/types/misc';
+import { SnackbarProps, SocketProps } from 'src/types/misc';
 import { log } from 'src/utils';
+import { snackbar } from 'src/redux';
 
 export let socket: ReturnType<typeof io> | null = null;
+
+const baseSnackbarProps: SnackbarProps = {
+  open: true,
+  duration: 4000,
+  variant: 'filled',
+  autoHide: false,
+  severity: 'info',
+  position: 'top'
+};
 
 export const initSocket = (onAfterInit?: (socket: SocketProps) => void) => {
   // if (!getState().user.data!._id) return;
@@ -25,11 +35,30 @@ export const initSocket = (onAfterInit?: (socket: SocketProps) => void) => {
     activateSocketRouters();
   });
   socket!.on('connect', () => {
-    log(`Sockets shook hands on ${WS_BASE_URL}! <${socket!.id}>`);
+    log(
+      `Sockets shook hands on ${HTTP_BASE_URL.replace('http', 'ws')}! <${
+        socket!.id
+      }>`
+    );
     if (onAfterInit) onAfterInit(socket);
+    dispatch(
+      snackbar({
+        ...baseSnackbarProps,
+        message: "You're now connected!",
+        autoHide: true,
+        severity: 'success'
+      })
+    );
   });
   socket!.on('disconnect', () => {
     log('Sockets called it a day!');
+    dispatch(
+      snackbar({
+        ...baseSnackbarProps,
+        message: "You're disconnected.",
+        severity: 'info'
+      })
+    );
   });
 };
 
@@ -38,7 +67,7 @@ export const openSocket = () => {
 
   // ensure to init `io` only once to avoid duplicate/multiple socket instances
   if (!socket) {
-    socket = io(WS_BASE_URL, {
+    socket = io(HTTP_BASE_URL.replace('http', 'ws'), {
       transports: ['websocket', 'polling'], // use WebSocket first, if available,
       reconnectionDelay: 5000,
       withCredentials: false,
@@ -103,7 +132,15 @@ export const socketEmit = <
     }
 
     if (!socket) initSocket(emit);
-    else socket.connect();
+    else {
+      socket.connect();
+      dispatch(
+        snackbar({
+          ...baseSnackbarProps,
+          message: "Could not send. You're disconnected."
+        })
+      );
+    }
   }
 };
 
