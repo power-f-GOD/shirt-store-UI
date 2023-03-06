@@ -6,7 +6,7 @@ import S from 'src/styles/home.module.scss';
 import { Img, Skeleton, Stack, Text } from 'src/components/shared';
 import { Action, APIShirtProps } from 'src/types';
 import { IMG_BASE_URL } from 'src/constants';
-import { useTypedSelector } from 'src/redux';
+import { formatNumber } from 'src/utils';
 
 const _Card: FC<
   Partial<APIShirtProps> & {
@@ -15,22 +15,15 @@ const _Card: FC<
   }
 > = (props) => {
   const { name, image_url, index, price, dispatch } = props;
-  const { discount, item } = useTypedSelector(
-    (state) => ({
-      discount: state.orders.extra?.discount || 0,
-      item: name ? state.orders.extra?.items?.[name] : null
-    }),
-    (a, b) => a.item?.cost === b.item?.cost && a.discount === b.discount
-  );
   const [count, setCount] = useState(0);
-  const { actual_cost, cost } = item || {};
 
   const handleChangeItem = useCallback(
     (type: Action['type']) => () => {
       setCount((prev) => {
         const isAdd = type === 'Add';
 
-        if (!name || (!isAdd && prev! <= 0) || (isAdd && prev! >= 30)) {
+        if (!name || (!isAdd && prev! <= 0)) {
+          // || (isAdd && prev! >= 30)) {
           return prev;
         }
 
@@ -53,11 +46,7 @@ const _Card: FC<
       } relative transition m-0 h-80 rounded-2xl border border-solid overflow-clip bg-black/5 border-black/5 anim__fadeInUpTiny`}
       animationDelay={`${index * 0.125}s`}>
       {image_url ? (
-        <Img
-          className="transition duration-300 anim__fadeIn"
-          src={`${IMG_BASE_URL}${image_url}`}
-          alt={`${name} shirt`}
-        />
+        <Img src={`${IMG_BASE_URL}${image_url}`} alt={`${name} shirt`} />
       ) : (
         <Skeleton className="w-full h-full" />
       )}
@@ -71,7 +60,14 @@ const _Card: FC<
         <Stack className="ml-auto">
           <Text as="small">Price:</Text>
           <Text className="font-bold text-3xl">
-            {price ? `$${price}` : <Skeleton height="1em" className="-mb-1" />}
+            {price ? (
+              formatNumber(price, {
+                currency: 'USD',
+                style: 'currency'
+              })
+            ) : (
+              <Skeleton height="1em" className="-mb-1" />
+            )}
           </Text>
         </Stack>
 
@@ -81,17 +77,12 @@ const _Card: FC<
               Total Amount:
             </Text>
             <Text className="font-bold text-lg truncate">
-              <Text className="">${cost || 0}</Text>
-              {!!actual_cost && (
-                <>
-                  <Text className="opacity-40 ml-2 text-base line-through">
-                    ${actual_cost || 0}
-                  </Text>
-                  <Text as="small" className="text-red-500 text-xs ml-2">
-                    (-{discount * 100}%)
-                  </Text>
-                </>
-              )}
+              <Text className="">
+                {formatNumber(price ? price * count : 0, {
+                  currency: 'USD',
+                  style: 'currency'
+                })}
+              </Text>
             </Text>
           </Stack>
 

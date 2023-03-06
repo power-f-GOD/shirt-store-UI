@@ -5,9 +5,10 @@ import { memo, FC } from 'react';
 import { Stack, Text } from 'src/components/shared';
 import { useTypedSelector } from 'src/redux';
 import { BasketProps } from 'src/types';
+import { formatNumber } from 'src/utils';
 
 const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
-  const { actual_cost, cost } =
+  const { actual_cost, cost, discount } =
     useTypedSelector(
       (state) => state.orders.extra,
       (a, b) => a?.cost === b?.cost
@@ -21,13 +22,30 @@ const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
       <Stack className="">
         <Text as="small" className="text-xs">
           {item_count < 0 ? 0 : item_count} item{item_count === 1 ? '' : 's'}
+          {!!actual_cost && !!discount && (
+            <Text as="small" className="text-red-500 text-xs ml-2">
+              (-
+              {formatNumber(discount * 100, {
+                maximumFractionDigits: 3
+              })}
+              % <Text className="hidden sm:inline">discount</Text>)
+            </Text>
+          )}
         </Text>
 
         <Stack className="font-bold flex-row items-end gap-1.5">
-          <Text className="text-2xl">${cost || 0}</Text>
+          <Text className="text-2xl">
+            {formatNumber(cost || 0, {
+              currency: 'USD',
+              style: 'currency'
+            })}
+          </Text>
           {!!actual_cost && (
             <Text className="text-base opacity-50 mb-0.5 line-through">
-              ${actual_cost}
+              {formatNumber(actual_cost, {
+                currency: 'USD',
+                style: 'currency'
+              })}
             </Text>
           )}
         </Stack>

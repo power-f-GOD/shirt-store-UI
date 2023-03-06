@@ -6,13 +6,17 @@ const _Img: typeof Image = forwardRef(({ className, ...props }, ref) => {
     <Image
       width={360}
       height={400}
-      className={`max-w-[75%] h-auto object-cover object-center absolute top-1/2 right-1/2 anim__fadeIn ${
+      className={`max-w-[75%] h-auto object-cover object-center absolute top-1/2 right-1/2 ${
         className || ''
       }`}
       ref={ref}
       {...props}
+      data-hidden="true"
       alt={props.alt}
       priority
+      onLoad={useCallback<ReactEventHandler>((e) => {
+        (e.currentTarget as HTMLImageElement).dataset.hidden = 'false';
+      }, [])}
       onError={useCallback<ReactEventHandler>((e) => {
         const img = e.target as HTMLImageElement;
         let sourceExt = '';
