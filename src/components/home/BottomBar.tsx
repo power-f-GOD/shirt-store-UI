@@ -23,7 +23,12 @@ const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
         <Text as="small" className="text-xs">
           {item_count < 0 ? 0 : item_count} item{item_count === 1 ? '' : 's'}
           {!!actual_cost && !!discount && (
-            <Text as="small" className="text-red-500 text-xs ml-2">
+            <Text
+              as="small"
+              className={`text-red-500 text-xs ml-2 ${
+                __stale ? ' opacity-40' : ''
+              }`}
+              aria-hidden={__stale}>
               (-
               {formatNumber(discount * 100, {
                 maximumFractionDigits: 3
@@ -35,8 +40,9 @@ const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
 
         <Stack
           className={`font-bold flex-row items-end gap-1.5 transition duration-300${
-            __stale ? ' opacity-40' : ''
-          }`}>
+            __stale ? ' opacity-30' : ''
+          }`}
+          aria-hidden={__stale}>
           <Text className="text-2xl">
             {formatNumber(cost || 0, {
               currency: 'USD',

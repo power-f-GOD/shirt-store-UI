@@ -17,7 +17,8 @@ exports[`renders BottomBar component unchanged 1`] = `
         s
       </small>
       <div
-        class="Stack flex font-bold flex-row items-end gap-1.5 transition duration-300 opacity-40"
+        aria-hidden="true"
+        class="Stack flex font-bold flex-row items-end gap-1.5 transition duration-300 opacity-30"
       >
         <span
           class="Text text-2xl"
