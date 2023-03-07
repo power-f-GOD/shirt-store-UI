@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the Img component unchanged 1`] = `
+<div>
+  <img
+    alt="Image"
+    class="max-w-[75%] h-auto object-cover object-center absolute top-1/2 right-1/2 "
+    data-hidden="true"
+    data-nimg="1"
+    decoding="async"
+    height="400"
+    src="http://localhost/_next/image?url=%2Fimg.png&w=750&q=75"
+    srcset="/_next/image?url=%2Fimg.png&w=384&q=75 1x, /_next/image?url=%2Fimg.png&w=750&q=75 2x"
+    style="color: transparent;"
+    width="360"
+  />
+</div>
+`;

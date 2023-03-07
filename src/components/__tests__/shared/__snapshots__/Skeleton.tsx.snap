@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the Skeleton component unchanged 1`] = `
+<div>
+  <span
+    class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm h-1m"
+  />
+</div>
+`;

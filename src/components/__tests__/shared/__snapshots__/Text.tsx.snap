@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the Text component unchanged 1`] = `
+<div>
+  <span
+    class="Text"
+  />
+</div>
+`;
