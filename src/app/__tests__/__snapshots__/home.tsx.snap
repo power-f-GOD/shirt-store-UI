@@ -1,0 +1,585 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home renders Home component unchanged 1`] = `
+<div>
+  <main
+    class="Stack flex flex-col "
+  >
+    <ul
+      class="Stack flex flex-col grid m-0 px-5 gap-5 list-none w-full max-w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      <li
+        class="Stack flex flex-col Card  relative transition m-0 h-80 rounded-2xl border border-solid overflow-clip bg-black/5 border-black/5 anim__fadeInUpTiny"
+        style="animation-delay: 0.125s;"
+      >
+        <span
+          class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full h-full"
+        />
+        <div
+          class="Stack flex tray absolute bottom-0 w-full grid transition-all duration-300 grid-cols-3 flex-row p-5 items-end justify-between pt-5 bg-white/70 backdrop-blur-sm"
+        >
+          <h2
+            class="Text col-span-2 text-xl"
+          >
+            <span
+              class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full"
+              style="height: 1em;"
+            />
+          </h2>
+          <div
+            class="Stack flex flex-col ml-auto"
+          >
+            <small
+              class="Text"
+            >
+              Price:
+            </small>
+            <span
+              class="Text font-bold text-3xl"
+            >
+              <span
+                class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm -mb-1"
+                style="height: 1em;"
+              />
+            </span>
+          </div>
+          <div
+            class="Stack flex flex-row items-end justify-center gap-1.5 border-0 border-t border-solid pt-5 mt-5 w-full col-span-3 border-black/10"
+          >
+            <div
+              class="Stack flex flex-col mr-auto"
+            >
+              <small
+                class="Text text-xs"
+              >
+                Total Amount:
+              </small>
+              <span
+                class="Text font-bold text-lg truncate"
+              >
+                <span
+                  class="Text"
+                >
+                  $0.0
+                </span>
+              </span>
+            </div>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="RemoveIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13H5v-2h14v2z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <span
+              class="Text text-lg justify-center inline-flex"
+              style="min-width: 1ch;"
+            >
+              0
+            </span>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="AddIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </li>
+      <li
+        class="Stack flex flex-col Card  relative transition m-0 h-80 rounded-2xl border border-solid overflow-clip bg-black/5 border-black/5 anim__fadeInUpTiny"
+        style="animation-delay: 0.25s;"
+      >
+        <span
+          class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full h-full"
+        />
+        <div
+          class="Stack flex tray absolute bottom-0 w-full grid transition-all duration-300 grid-cols-3 flex-row p-5 items-end justify-between pt-5 bg-white/70 backdrop-blur-sm"
+        >
+          <h2
+            class="Text col-span-2 text-xl"
+          >
+            <span
+              class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full"
+              style="height: 1em;"
+            />
+          </h2>
+          <div
+            class="Stack flex flex-col ml-auto"
+          >
+            <small
+              class="Text"
+            >
+              Price:
+            </small>
+            <span
+              class="Text font-bold text-3xl"
+            >
+              <span
+                class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm -mb-1"
+                style="height: 1em;"
+              />
+            </span>
+          </div>
+          <div
+            class="Stack flex flex-row items-end justify-center gap-1.5 border-0 border-t border-solid pt-5 mt-5 w-full col-span-3 border-black/10"
+          >
+            <div
+              class="Stack flex flex-col mr-auto"
+            >
+              <small
+                class="Text text-xs"
+              >
+                Total Amount:
+              </small>
+              <span
+                class="Text font-bold text-lg truncate"
+              >
+                <span
+                  class="Text"
+                >
+                  $0.0
+                </span>
+              </span>
+            </div>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="RemoveIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13H5v-2h14v2z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <span
+              class="Text text-lg justify-center inline-flex"
+              style="min-width: 1ch;"
+            >
+              0
+            </span>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="AddIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </li>
+      <li
+        class="Stack flex flex-col Card  relative transition m-0 h-80 rounded-2xl border border-solid overflow-clip bg-black/5 border-black/5 anim__fadeInUpTiny"
+        style="animation-delay: 0.375s;"
+      >
+        <span
+          class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full h-full"
+        />
+        <div
+          class="Stack flex tray absolute bottom-0 w-full grid transition-all duration-300 grid-cols-3 flex-row p-5 items-end justify-between pt-5 bg-white/70 backdrop-blur-sm"
+        >
+          <h2
+            class="Text col-span-2 text-xl"
+          >
+            <span
+              class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full"
+              style="height: 1em;"
+            />
+          </h2>
+          <div
+            class="Stack flex flex-col ml-auto"
+          >
+            <small
+              class="Text"
+            >
+              Price:
+            </small>
+            <span
+              class="Text font-bold text-3xl"
+            >
+              <span
+                class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm -mb-1"
+                style="height: 1em;"
+              />
+            </span>
+          </div>
+          <div
+            class="Stack flex flex-row items-end justify-center gap-1.5 border-0 border-t border-solid pt-5 mt-5 w-full col-span-3 border-black/10"
+          >
+            <div
+              class="Stack flex flex-col mr-auto"
+            >
+              <small
+                class="Text text-xs"
+              >
+                Total Amount:
+              </small>
+              <span
+                class="Text font-bold text-lg truncate"
+              >
+                <span
+                  class="Text"
+                >
+                  $0.0
+                </span>
+              </span>
+            </div>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="RemoveIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13H5v-2h14v2z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <span
+              class="Text text-lg justify-center inline-flex"
+              style="min-width: 1ch;"
+            >
+              0
+            </span>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="AddIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </li>
+      <li
+        class="Stack flex flex-col Card  relative transition m-0 h-80 rounded-2xl border border-solid overflow-clip bg-black/5 border-black/5 anim__fadeInUpTiny"
+        style="animation-delay: 0.5s;"
+      >
+        <span
+          class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full h-full"
+        />
+        <div
+          class="Stack flex tray absolute bottom-0 w-full grid transition-all duration-300 grid-cols-3 flex-row p-5 items-end justify-between pt-5 bg-white/70 backdrop-blur-sm"
+        >
+          <h2
+            class="Text col-span-2 text-xl"
+          >
+            <span
+              class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full"
+              style="height: 1em;"
+            />
+          </h2>
+          <div
+            class="Stack flex flex-col ml-auto"
+          >
+            <small
+              class="Text"
+            >
+              Price:
+            </small>
+            <span
+              class="Text font-bold text-3xl"
+            >
+              <span
+                class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm -mb-1"
+                style="height: 1em;"
+              />
+            </span>
+          </div>
+          <div
+            class="Stack flex flex-row items-end justify-center gap-1.5 border-0 border-t border-solid pt-5 mt-5 w-full col-span-3 border-black/10"
+          >
+            <div
+              class="Stack flex flex-col mr-auto"
+            >
+              <small
+                class="Text text-xs"
+              >
+                Total Amount:
+              </small>
+              <span
+                class="Text font-bold text-lg truncate"
+              >
+                <span
+                  class="Text"
+                >
+                  $0.0
+                </span>
+              </span>
+            </div>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="RemoveIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13H5v-2h14v2z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <span
+              class="Text text-lg justify-center inline-flex"
+              style="min-width: 1ch;"
+            >
+              0
+            </span>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="AddIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </li>
+      <li
+        class="Stack flex flex-col Card  relative transition m-0 h-80 rounded-2xl border border-solid overflow-clip bg-black/5 border-black/5 anim__fadeInUpTiny"
+        style="animation-delay: 0.625s;"
+      >
+        <span
+          class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full h-full"
+        />
+        <div
+          class="Stack flex tray absolute bottom-0 w-full grid transition-all duration-300 grid-cols-3 flex-row p-5 items-end justify-between pt-5 bg-white/70 backdrop-blur-sm"
+        >
+          <h2
+            class="Text col-span-2 text-xl"
+          >
+            <span
+              class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full"
+              style="height: 1em;"
+            />
+          </h2>
+          <div
+            class="Stack flex flex-col ml-auto"
+          >
+            <small
+              class="Text"
+            >
+              Price:
+            </small>
+            <span
+              class="Text font-bold text-3xl"
+            >
+              <span
+                class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm -mb-1"
+                style="height: 1em;"
+              />
+            </span>
+          </div>
+          <div
+            class="Stack flex flex-row items-end justify-center gap-1.5 border-0 border-t border-solid pt-5 mt-5 w-full col-span-3 border-black/10"
+          >
+            <div
+              class="Stack flex flex-col mr-auto"
+            >
+              <small
+                class="Text text-xs"
+              >
+                Total Amount:
+              </small>
+              <span
+                class="Text font-bold text-lg truncate"
+              >
+                <span
+                  class="Text"
+                >
+                  $0.0
+                </span>
+              </span>
+            </div>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="RemoveIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13H5v-2h14v2z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <span
+              class="Text text-lg justify-center inline-flex"
+              style="min-width: 1ch;"
+            >
+              0
+            </span>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="AddIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </main>
+  <footer
+    class="Stack flex sticky bottom-0 z-30 p-5 py-3 mt-20 flex-row w-full max-w-xl mx-auto justify-between items-center bg-white/90 backdrop-blur-sm border-t border-b-0 border-solid border-gray-200 rounded-tl-2xl rounded-tr-2xl anim__fadeInUpBig sm:rounded-2xl sm:bottom-8 sm:border sm:shadow-lg sm:shadow-black/5 lg:mt-24 lg:py-4"
+    style="animation-delay: 1s;"
+  >
+    <div
+      class="Stack flex flex-col "
+    >
+      <small
+        class="Text text-xs"
+      >
+        0
+         item
+        s
+      </small>
+      <div
+        class="Stack flex font-bold flex-row items-end gap-1.5 transition duration-300 opacity-40"
+      >
+        <span
+          class="Text text-2xl"
+        >
+          $0.0
+        </span>
+      </div>
+    </div>
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium bg-black py-3 px-5 rounded-xl hover:bg-black/70 lg:py-3.5 lg:px-6 css-sghohy-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
+    >
+      Checkout 
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium ml-1 w-5 css-i4bv87-MuiSvgIcon-root"
+        data-testid="CheckIcon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+        />
+      </svg>
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </footer>
+</div>
+`;

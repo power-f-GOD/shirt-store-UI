@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders Card unchanged 1`] = `
+exports[`renders Card component unchanged 1`] = `
 <div>
   <li
     class="Stack flex flex-col Card  relative transition m-0 h-80 rounded-2xl border border-solid overflow-clip bg-black/5 border-black/5 anim__fadeInUpTiny"

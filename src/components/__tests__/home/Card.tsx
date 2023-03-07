@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 
 import { Card } from 'src/components/home';
 
-it('renders Card unchanged', () => {
+it('renders Card component unchanged', () => {
   const { container } = render(
     <Card
       index={0}
