@@ -1,15 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ordersState } from 'src/constants';
+import { httpStatusPropsState } from 'src/constants/misc';
 import { OrdersActionPayload } from 'src/types';
 import { resolveState } from '../__utils';
 
+const initialState: OrdersActionPayload = {
+  ...httpStatusPropsState,
+  data: [],
+  extra: { __stale: true }
+};
+
 export const ordersSlice = createSlice({
-  initialState: ordersState,
+  initialState,
   name: 'orders',
   reducers: {
     orders: (state, action: PayloadAction<OrdersActionPayload>) =>
-      resolveState(state || ordersState, action)
+      resolveState(state || initialState, action)
   }
 });
 

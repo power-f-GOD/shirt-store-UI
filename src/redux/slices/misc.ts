@@ -1,10 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { SnackbarProps } from 'src/types';
-import { snackbarState } from 'src/constants';
 
 export const snackbarSlice = createSlice({
-  initialState: snackbarState,
+  initialState: {
+    open: false,
+    message: ' ',
+    severity: 'info',
+    duration: 4000,
+    title: false,
+    autoHide: true,
+    position: 'top'
+  } as SnackbarProps,
   name: 'snackbar',
   reducers: {
     snackbar: (state, action: PayloadAction<SnackbarProps>) => {

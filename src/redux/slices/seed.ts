@@ -1,10 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { shirtsState } from 'src/constants';
+import { httpStatusPropsState } from 'src/constants/misc';
 import { ShirtsActionPayload } from 'src/types';
 
 export const shirtsSlice = createSlice({
-  initialState: shirtsState,
+  initialState: {
+    ...httpStatusPropsState,
+    data: [{}, {}, {}, {}, {}],
+    extra: {}
+  } as ShirtsActionPayload,
   name: 'shirts',
   reducers: {
     shirts: (state, { payload }: PayloadAction<ShirtsActionPayload>) => ({

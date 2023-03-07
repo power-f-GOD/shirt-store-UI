@@ -7,7 +7,7 @@ UI for Shirt Store (API) built with [Next.js 13](https://nextjs.org/).
 1. Clone the repository and navigate into it:
 
 ```zsh
-git clone https://github.com/username/shirt-store-UI.git && cd shirt-store-ui
+git clone https://github.com/power-f-GOD/shirt-store-UI.git && cd shirt-store-ui
 ```
 
 2. Install dependencies:

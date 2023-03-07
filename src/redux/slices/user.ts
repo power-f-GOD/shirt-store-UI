@@ -1,11 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { userState } from 'src/constants';
+import { httpStatusPropsState } from 'src/constants/misc';
 import { FetchProps } from 'src/types';
 import { APIUserProps } from 'src/types/user';
 
 export const userSlice = createSlice({
-  initialState: userState,
+  initialState: {
+    ...httpStatusPropsState,
+    data: {
+      _id: '',
+      name: ''
+    }
+  },
   name: 'user',
   reducers: {
     user: (state, { payload }: PayloadAction<FetchProps<APIUserProps>>) => {

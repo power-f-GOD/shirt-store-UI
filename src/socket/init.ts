@@ -146,4 +146,4 @@ export const socketEmit = <
   }
 };
 
-if (globalThis.window) initSocket();
+if (globalThis.window) setTimeout(initSocket, 300);

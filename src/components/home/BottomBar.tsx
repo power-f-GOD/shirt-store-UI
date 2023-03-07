@@ -1,9 +1,9 @@
 import { Check } from '@mui/icons-material';
 import { Button } from '@mui/material';
-import { memo, FC } from 'react';
+import { memo, FC, useCallback } from 'react';
 
 import { Stack, Text } from 'src/components/shared';
-import { useTypedSelector } from 'src/redux';
+import { dispatch, snackbar, useTypedSelector } from 'src/redux';
 import { BasketProps } from 'src/types';
 import { formatNumber } from 'src/utils';
 
@@ -56,7 +56,18 @@ const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
 
       <Button
         variant="contained"
-        className="bg-black py-3 px-5 rounded-xl hover:bg-black/70 lg:py-3.5 lg:px-6">
+        className="bg-black py-3 px-5 rounded-xl hover:bg-black/70 lg:py-3.5 lg:px-6"
+        onClick={useCallback(() => {
+          dispatch(
+            snackbar({
+              open: true,
+              message: 'Coming soon!',
+              severity: 'info',
+              position: 'top',
+              variant: 'filled'
+            })
+          );
+        }, [])}>
         Checkout <Check className="ml-1 w-5" />
       </Button>
     </Stack>
