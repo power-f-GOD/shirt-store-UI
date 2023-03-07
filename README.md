@@ -40,6 +40,18 @@ pm dev
 
 2. Navigate to [http://localhost:3000](http://localhost:3000) in your browser to see the app running.
 
+## Tests
+
+The project uses [Jest](https://jestjs.io/) as the test runner/framework.
+
+To run the tests, simply run the following command:
+
+```zsh
+pm test
+```
+
+See `package.json` for the rest test scripts.
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
