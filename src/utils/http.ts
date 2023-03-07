@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 import { Action, APIBaseResponse, HttpStatusProps } from 'src/types';
-import { API_BASE_URL, DEVELOPMENT, HTTP_BASE_URL } from 'src/constants';
+import { API_BASE_URL, IS_DEVELOPMENT, HTTP_BASE_URL } from 'src/constants';
 import { dispatch } from 'src/redux/store';
 import { snackbar } from 'src/redux/slices/misc';
 import { log } from './misc';
@@ -127,7 +127,7 @@ export class Http {
       );
     }
 
-    if (DEVELOPMENT) {
+    if (IS_DEVELOPMENT) {
       log(
         `[${action?.name || 'unknown'}] An error occured: `,
         error?.message || error

@@ -6,13 +6,13 @@ import {
 } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
-import { DEVELOPMENT } from 'src/constants/misc';
+import { IS_DEVELOPMENT } from 'src/constants/misc';
 import { isEmptyObject, isObject } from 'src/utils';
 import { rootReducer } from './slices';
 
 const store = configureStore({
   reducer: rootReducer,
-  devTools: DEVELOPMENT,
+  devTools: IS_DEVELOPMENT,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false })
 });

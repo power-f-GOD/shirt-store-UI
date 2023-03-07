@@ -1,38 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Shirt Store UI
 
-## Getting Started
+UI for Shirt Store (API) built with [Next.js 13](https://nextjs.org/).
 
-First, run the development server:
+## Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+1. Clone the repository and navigate into it:
+
+```zsh
+git clone https://github.com/username/shirt-store-UI.git && cd shirt-store-ui
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```zsh
+npm i -g pnpm && pnpm i
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+3. Create a `.env.local` file in the root directory of the project with the required environment variables. (See the [Environment Variables](#environment-variables) section)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+`Hint`: Copy the contents of `.env.example`.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Environment Variables
 
-## Learn More
+The following environment variables must be set in a `.env.local` file:
 
-To learn more about Next.js, take a look at the following resources:
+- `NEXT_PUBLIC_API_HOST`: The hostname or IP address that the API server is listening on
+- `NEXT_PUBLIC_API_PORT`: The port that the API server is running
+- `NEXT_PUBLIC_MODE`: The mode in which the app is running: `'development'` | `'production'`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Start the development server:
 
-## Deploy on Vercel
+```zsh
+pm dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`Sidebar:` You can set an alias for `pnpm` in your `.zshrc` (on Mac) or `.bashrc` file by including this line `alias pm=pnpm` therein.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. Navigate to [http://localhost:3000](http://localhost:3000) in your browser to see the app running.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

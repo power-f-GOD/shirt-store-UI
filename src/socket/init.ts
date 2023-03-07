@@ -9,7 +9,7 @@ import {
 import { normalizeSocketPayload } from './__utils';
 import { ordersPath } from './orders.path';
 import { miscRouter } from './misc.router';
-import { DEVELOPMENT, HTTP_BASE_URL } from 'src/constants/misc';
+import { IS_DEVELOPMENT, HTTP_BASE_URL } from 'src/constants/misc';
 import { Http } from 'src/utils/http';
 import { SnackbarProps, SocketProps } from 'src/types/misc';
 import { log } from 'src/utils';
@@ -127,7 +127,7 @@ export const socketEmit = <
 
   if (socket?.connected) emit(socket);
   else {
-    if (DEVELOPMENT) {
+    if (IS_DEVELOPMENT) {
       log(
         `Error: Could not emit event: '${eventName}': Sockets not connected.`
       );
