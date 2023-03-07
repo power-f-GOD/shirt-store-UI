@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Card unchanged 1`] = `
+<div>
+  <li
+    class="Stack flex flex-col Card  relative transition m-0 h-80 rounded-2xl border border-solid overflow-clip bg-black/5 border-black/5 anim__fadeInUpTiny"
+    style="animation-delay: 0s;"
+  >
+    <span
+      class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full h-full"
+    />
+    <div
+      class="Stack flex tray absolute bottom-0 w-full grid transition-all duration-300 grid-cols-3 flex-row p-5 items-end justify-between pt-5 bg-white/70 backdrop-blur-sm"
+    >
+      <h2
+        class="Text col-span-2 text-xl"
+      >
+        <span
+          class="Stack flex flex-col Skeleton relative left-0 top-0 inline-flex justify-center items-center self-center max-width-full overflow-hidden rounded-sm w-full"
+          style="height: 1em;"
+        />
+      </h2>
+      <div
+        class="Stack flex flex-col ml-auto"
+      >
+        <small
+          class="Text"
+        >
+          Price:
+        </small>
+        <span
+          class="Text font-bold text-3xl"
+        >
+          $8.0
+        </span>
+      </div>
+      <div
+        class="Stack flex flex-row items-end justify-center gap-1.5 border-0 border-t border-solid pt-5 mt-5 w-full col-span-3 border-black/10"
+      >
+        <div
+          class="Stack flex flex-col mr-auto"
+        >
+          <small
+            class="Text text-xs"
+          >
+            Total Amount:
+          </small>
+          <span
+            class="Text font-bold text-lg truncate"
+          >
+            <span
+              class="Text"
+            >
+              $0.0
+            </span>
+          </span>
+        </div>
+        <button
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="RemoveIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 13H5v-2h14v2z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+        <span
+          class="Text text-lg justify-center inline-flex"
+          style="min-width: 1ch;"
+        >
+          0
+        </span>
+        <button
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium border border-solid border-black/10 w-8 h-8 css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="AddIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </li>
+</div>
+`;
