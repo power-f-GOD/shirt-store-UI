@@ -8,10 +8,10 @@ import { BasketProps } from 'src/types';
 import { formatNumber } from 'src/utils';
 
 const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
-  const { actual_cost, cost, discount } =
+  const { actual_cost, cost, discount, __stale } =
     useTypedSelector(
       (state) => state.orders.extra,
-      (a, b) => a?.cost === b?.cost
+      (a, b) => a?.cost === b?.cost && a?.__stale === b?.__stale
     ) || {};
 
   return (
@@ -33,7 +33,10 @@ const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
           )}
         </Text>
 
-        <Stack className="font-bold flex-row items-end gap-1.5">
+        <Stack
+          className={`font-bold flex-row items-end gap-1.5 transition duration-300${
+            __stale ? ' opacity-40' : ''
+          }`}>
           <Text className="text-2xl">
             {formatNumber(cost || 0, {
               currency: 'USD',

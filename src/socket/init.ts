@@ -13,7 +13,7 @@ import { DEVELOPMENT, HTTP_BASE_URL } from 'src/constants/misc';
 import { Http } from 'src/utils/http';
 import { SnackbarProps, SocketProps } from 'src/types/misc';
 import { log } from 'src/utils';
-import { snackbar } from 'src/redux';
+import { orders, snackbar } from 'src/redux';
 
 export let socket: ReturnType<typeof io> | null = null;
 
@@ -49,6 +49,7 @@ export const initSocket = (onAfterInit?: (socket: SocketProps) => void) => {
         severity: 'success'
       })
     );
+    dispatch(orders({ extra: { __stale: false } }));
   });
   socket!.on('disconnect', () => {
     log('Sockets called it a day!');
@@ -59,6 +60,7 @@ export const initSocket = (onAfterInit?: (socket: SocketProps) => void) => {
         severity: 'info'
       })
     );
+    dispatch(orders({ extra: { __stale: true } }));
   });
 };
 

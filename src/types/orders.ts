@@ -2,7 +2,7 @@ import { FetchProps } from './shared';
 
 export type OrdersActionPayload = FetchProps<
   APIOrderProps[],
-  Partial<APIOrderProps>
+  Partial<APIOrderProps & { __stale?: boolean }>
 >;
 
 export interface APIOrderItemProps {
