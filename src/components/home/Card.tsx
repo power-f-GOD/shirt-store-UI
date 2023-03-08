@@ -44,7 +44,7 @@ const _Card: FC<
   useEffect(() => {
     if (isReset) setCount(0);
   }, [isReset]);
-  console.log({ isReset, count, name });
+
   return (
     <Stack
       as="li"
