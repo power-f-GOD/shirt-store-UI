@@ -1,6 +1,6 @@
 'use client';
 
-import { Reducer, useCallback, useEffect, useReducer, useState } from 'react';
+import { Reducer, useCallback, useEffect, useReducer } from 'react';
 
 import { Stack } from 'src/components/shared/Stack';
 import { Card, BottomBar } from 'src/components/home';
@@ -10,16 +10,13 @@ import { orders as ordersAction } from 'src/redux/slices/orders';
 import { socketEmit, SocketEventsEnum, SocketPathsEnum } from 'src/socket';
 
 const Home = () => {
-  const { shirts, authenticated } = useTypedSelector(
+  const { shirts, isReset } = useTypedSelector(
     (state) => ({
       shirts: state.shirts.data,
-      authenticated: !!state.user.data?.authenticated
+      isReset: !state.orders.extra?.item_count
     }),
-    (a, b) =>
-      a.authenticated === b.authenticated &&
-      a.shirts?.[0]._id === b.shirts?.[0]._id
+    (a, b) => a.isReset === b.isReset && a.shirts?.[0]._id === b.shirts?.[0]._id
   );
-  const [isReset, setIsReset] = useState(false);
   const [basket, localDispatch] = useReducer<Reducer<BasketProps, Action>>(
     (
       state: BasketProps,
@@ -62,7 +59,6 @@ const Home = () => {
     itemsToUpdate.push('extra.item_count');
     itemValuesToUpdate.push(basket.item_count);
     patch(ordersAction, 'orders', itemsToUpdate, itemValuesToUpdate);
-    setIsReset(false);
     socketEmit(
       SocketEventsEnum.ORDER,
       { items: basket.items },
@@ -71,10 +67,7 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [basket.item_count]);
 
-  useEffect(() => {
-    setIsReset(!authenticated);
-  }, [authenticated]);
-
+  console.log({ basket, isReset });
   return (
     <>
       <Stack as="main">
@@ -97,7 +90,8 @@ const Home = () => {
                   />
                 );
               },
-              [basket.items, isReset]
+              // eslint-disable-next-line react-hooks/exhaustive-deps
+              [isReset]
             )
           )}
         </Stack>
@@ -107,7 +101,7 @@ const Home = () => {
         item_count={basket.item_count}
         onOrderCreated={useCallback(() => {
           localDispatch({ type: 'Remove All', payload: {} });
-          setIsReset(true);
+
           try {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           } catch (e) {

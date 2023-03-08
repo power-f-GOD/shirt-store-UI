@@ -15,8 +15,7 @@ export const ordersSlice = createSlice({
   name: 'orders',
   reducers: {
     orders: (state, action: PayloadAction<OrdersActionPayload>) =>
-      resolveState(state || initialState, action),
-    reset: () => initialState
+      resolveState(state, initialState, action)
   }
 });
 

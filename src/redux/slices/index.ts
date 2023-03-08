@@ -18,7 +18,15 @@ export const rootReducer = (state: any, action: PayloadAction<any>) => {
   const { snackbar, shirts } = state || {};
 
   if (action.type === 'store/reset') {
-    return appReducer({ snackbar, shirts } as any, action);
+    return appReducer(
+      {
+        snackbar,
+        shirts,
+        orders: { extra: { __stale: false } },
+        user: { status: 'fulfilled' }
+      } as any,
+      action
+    );
   }
 
   return appReducer(state, action);

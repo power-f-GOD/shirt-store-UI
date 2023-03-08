@@ -103,7 +103,7 @@ export class Http {
     )
       ? "Hm.🤔 Something went wrong. Kindly check that you're connected to the internet."
       : (error.message || error).toString();
-
+    console.log({ error, message });
     if (message) {
       if (action) {
         dispatch(
