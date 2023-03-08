@@ -17,7 +17,7 @@ const Home = () => {
     }),
     (a, b) =>
       a.authenticated === b.authenticated &&
-      a.shirts?.length === b.shirts?.length
+      a.shirts?.[0]._id === b.shirts?.[0]._id
   );
   const [isReset, setIsReset] = useState(false);
   const [basket, localDispatch] = useReducer<Reducer<BasketProps, Action>>(

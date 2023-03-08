@@ -43,7 +43,7 @@ const _BottomBar: FC<
       dispatch(orders({ status: 'inert' }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authenticated, __placed]);
+  }, [authenticated]);
 
   return (
     <Stack
@@ -98,7 +98,7 @@ const _BottomBar: FC<
         onClick={() => {
           if (!authenticated) {
             dispatch(orders({ extra: { __placed: true }, status: 'pending' }));
-            router.push('/auth');
+            setTimeout(() => router.push('/auth'), 500);
           } else {
             createOrder({ items }, onOrderCreated);
           }
