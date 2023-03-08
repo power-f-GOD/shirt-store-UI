@@ -30,3 +30,21 @@ img {
     opacity: 0;
   }
 }
+
+.Root__username {
+  &:hover {
+    button {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+      transition: 0.3s, visibility 0s ease 0s;
+    }
+  }
+
+  button {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(0.5em);
+    transition: 0.3s, visibility 0s ease 0.3s;
+  }
+}

@@ -1,4 +1,6 @@
 export interface APIUserProps {
   _id?: string;
-  name?: string;
+  username?: string;
+  created_at?: string;
+  authenticated?: boolean;
 }

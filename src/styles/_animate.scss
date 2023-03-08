@@ -1,4 +1,4 @@
-@import 'constants';
+@use 'constants';
 
 [class*='anim__'] {
   will-change: transform, opacity;

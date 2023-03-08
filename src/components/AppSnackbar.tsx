@@ -68,7 +68,7 @@ const _AppSnackbar = () => {
       <Alert
         onClose={handleOnClose}
         severity={severity}
-        variant={variant}
+        variant={variant ?? 'filled'}
         className="shadow-lg">
         {title && (
           <AlertTitle className="text-capitalize mb-1">

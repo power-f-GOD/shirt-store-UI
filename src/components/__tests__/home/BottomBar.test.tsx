@@ -5,6 +5,8 @@ import { Provider as ReduxProvider } from 'react-redux';
 import store from 'src/redux/store';
 import { BottomBar } from 'src/components/home/BottomBar';
 
+jest.mock('next/navigation', () => require('next-router-mock'));
+
 describe('BottomBar', () => {
   it('renders the Shirt Store BottomBar', async () => {
     const { container, findByText } = render(

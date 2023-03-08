@@ -6,7 +6,7 @@ import { shallowEqual } from 'react-redux';
 import { Stack } from 'src/components/shared/Stack';
 import { Card, BottomBar } from 'src/components/home';
 import { Action, BasketProps } from 'src/types';
-import { patch, useTypedSelector } from 'src/redux/store';
+import { getState, patch, useTypedSelector } from 'src/redux/store';
 import { orders as ordersAction } from 'src/redux/slices/orders';
 import { socketEmit, SocketEventsEnum, SocketPathsEnum } from 'src/socket';
 
@@ -29,8 +29,8 @@ const Home = () => {
       return basket;
     },
     {
-      items: {},
-      item_count: -1
+      items: getState().orders.extra?.items || {},
+      item_count: getState().orders.extra?.item_count || -1
     }
   );
 
@@ -49,6 +49,8 @@ const Home = () => {
       itemValuesToUpdate.push(basket.items[name]);
     }
 
+    itemsToUpdate.push('extra.item_count');
+    itemValuesToUpdate.push(basket.item_count);
     patch(ordersAction, 'orders', itemsToUpdate, itemValuesToUpdate);
     socketEmit(
       SocketEventsEnum.ORDER,
@@ -71,11 +73,13 @@ const Home = () => {
                   key={i}
                   index={i + 1}
                   name={name}
+                  initialCount={!name ? 0 : basket.items[name]?.count}
                   price={price}
                   image_url={image_url}
                   dispatch={localDispatch}
                 />
               );
+              // eslint-disable-next-line react-hooks/exhaustive-deps
             }, [])
           )}
         </Stack>

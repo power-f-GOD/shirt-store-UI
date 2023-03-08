@@ -9,7 +9,7 @@ export * from './seed';
 export * from './user';
 
 export const rootReducer = (state: any, action: PayloadAction<any>) => {
-  if (action.type === 'user/user' && action.payload._id === '') {
+  if (action.type === 'user/user' && action.payload.authenticated === false) {
     state = {
       // shirts: state.shirts,
       snackbar: state.snackbar

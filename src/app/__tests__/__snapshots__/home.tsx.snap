@@ -561,8 +561,9 @@ exports[`Home renders Home component unchanged 1`] = `
       </div>
     </div>
     <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium bg-black py-3 px-5 rounded-xl hover:bg-black/70 lg:py-3.5 lg:px-6 css-sghohy-MuiButtonBase-root-MuiButton-root"
-      tabindex="0"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium bg-black py-3 px-5 rounded-xl hover:bg-black/70 lg:py-3.5 lg:px-6 css-sghohy-MuiButtonBase-root-MuiButton-root"
+      disabled=""
+      tabindex="-1"
       type="button"
     >
       Checkout 
@@ -577,9 +578,6 @@ exports[`Home renders Home component unchanged 1`] = `
           d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
         />
       </svg>
-      <span
-        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-      />
     </button>
   </footer>
 </div>

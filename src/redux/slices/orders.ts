@@ -7,7 +7,7 @@ import { resolveState } from '../__utils';
 const initialState: OrdersActionPayload = {
   ...httpStatusPropsState,
   data: [],
-  extra: { __stale: true }
+  extra: { __stale: true, __placed: false }
 };
 
 export const ordersSlice = createSlice({

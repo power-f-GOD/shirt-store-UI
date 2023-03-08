@@ -11,11 +11,12 @@ import { formatNumber } from 'src/utils';
 const _Card: FC<
   Partial<APIShirtProps> & {
     index: number;
+    initialCount?: number;
     dispatch: Dispatch<Action>;
   }
 > = (props) => {
-  const { name, image_url, index, price, dispatch } = props;
-  const [count, setCount] = useState(0);
+  const { name, image_url, index, price, initialCount, dispatch } = props;
+  const [count, setCount] = useState(initialCount || 0);
 
   const handleChangeItem = useCallback(
     (type: Action['type']) => () => {

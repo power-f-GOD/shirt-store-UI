@@ -1,18 +1,50 @@
 import { Check } from '@mui/icons-material';
 import { Button } from '@mui/material';
-import { memo, FC, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import { memo, FC, useCallback, useEffect } from 'react';
 
 import { Stack, Text } from 'src/components/shared';
-import { dispatch, snackbar, useTypedSelector } from 'src/redux';
+import { dispatch, orders, useTypedSelector } from 'src/redux';
 import { BasketProps } from 'src/types';
-import { formatNumber } from 'src/utils';
+import { formatNumber, isEmptyObject } from 'src/utils';
 
 const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
-  const { actual_cost, cost, discount, __stale } =
+  const router = useRouter();
+  const {
+    actual_cost,
+    cost,
+    discount,
+    __stale,
+    __placed,
+    items,
+    authenticated,
+    status
+  } =
     useTypedSelector(
-      (state) => state.orders.extra,
-      (a, b) => a?.cost === b?.cost && a?.__stale === b?.__stale
+      (state) => ({
+        status: state.orders.status,
+        ...state.orders.extra,
+        authenticated: state.user.data?.authenticated
+      }),
+      (a, b) =>
+        a.cost === b.cost && a.__stale === b.__stale && a.status === b.status
     ) || {};
+  const isPending = status === 'pending';
+
+  useEffect(() => {
+    if (__placed && authenticated && !isEmptyObject(items || {})) {
+      // create order
+      console.log('create order');
+    } else {
+      dispatch(
+        orders({
+          // extra: { items: {}, actual_cost: 0, cost: 0 },
+          status: 'inert'
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authenticated, __placed]);
 
   return (
     <Stack
@@ -63,18 +95,21 @@ const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
       <Button
         variant="contained"
         className="bg-black py-3 px-5 rounded-xl hover:bg-black/70 lg:py-3.5 lg:px-6"
+        disabled={item_count < 1 || isPending}
         onClick={useCallback(() => {
-          dispatch(
-            snackbar({
-              open: true,
-              message: 'Coming soon!',
-              severity: 'info',
-              position: 'top',
-              variant: 'filled'
-            })
-          );
-        }, [])}>
-        Checkout <Check className="ml-1 w-5" />
+          if (!authenticated) {
+            router.push('/auth');
+            dispatch(orders({ extra: { __placed: true }, status: 'pending' }));
+          }
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [authenticated])}>
+        {isPending ? (
+          'Just a sec...'
+        ) : (
+          <>
+            Checkout <Check className="ml-1 w-5" />
+          </>
+        )}
       </Button>
     </Stack>
   );

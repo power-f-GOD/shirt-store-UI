@@ -9,9 +9,9 @@ export const userSlice = createSlice({
     ...httpStatusPropsState,
     data: {
       _id: '',
-      name: ''
+      username: ''
     }
-  },
+  } as FetchProps<APIUserProps>,
   name: 'user',
   reducers: {
     user: (state, { payload }: PayloadAction<FetchProps<APIUserProps>>) => {
