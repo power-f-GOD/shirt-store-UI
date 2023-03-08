@@ -1,14 +1,17 @@
 import { Check } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import { memo, FC, useCallback, useEffect } from 'react';
+import { memo, FC, useEffect } from 'react';
 
 import { Stack, Text } from 'src/components/shared';
 import { dispatch, orders, useTypedSelector } from 'src/redux';
+import { createOrder } from 'src/services';
 import { BasketProps } from 'src/types';
 import { formatNumber, isEmptyObject } from 'src/utils';
 
-const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
+const _BottomBar: FC<
+  Pick<BasketProps, 'item_count'> & { onOrderCreated: () => void }
+> = ({ item_count, onOrderCreated }) => {
   const router = useRouter();
   const {
     actual_cost,
@@ -19,29 +22,25 @@ const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
     items,
     authenticated,
     status
-  } =
-    useTypedSelector(
-      (state) => ({
-        status: state.orders.status,
-        ...state.orders.extra,
-        authenticated: state.user.data?.authenticated
-      }),
-      (a, b) =>
-        a.cost === b.cost && a.__stale === b.__stale && a.status === b.status
-    ) || {};
+  } = useTypedSelector(
+    (state) => ({
+      status: state.orders.status,
+      ...state.orders.extra,
+      authenticated: state.user.data?.authenticated
+    }),
+    (a, b) =>
+      a.cost === b.cost &&
+      a.__stale === b.__stale &&
+      a.status === b.status &&
+      a.authenticated === b.authenticated
+  );
   const isPending = status === 'pending';
 
   useEffect(() => {
     if (__placed && authenticated && !isEmptyObject(items || {})) {
-      // create order
-      console.log('create order');
+      createOrder({ items }, onOrderCreated);
     } else {
-      dispatch(
-        orders({
-          // extra: { items: {}, actual_cost: 0, cost: 0 },
-          status: 'inert'
-        })
-      );
+      dispatch(orders({ status: 'inert' }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authenticated, __placed]);
@@ -96,18 +95,20 @@ const _BottomBar: FC<Pick<BasketProps, 'item_count'>> = ({ item_count }) => {
         variant="contained"
         className="bg-black py-3 px-5 rounded-xl hover:bg-black/70 lg:py-3.5 lg:px-6"
         disabled={item_count < 1 || isPending}
-        onClick={useCallback(() => {
+        onClick={() => {
           if (!authenticated) {
-            router.push('/auth');
             dispatch(orders({ extra: { __placed: true }, status: 'pending' }));
+            router.push('/auth');
+          } else {
+            createOrder({ items }, onOrderCreated);
           }
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [authenticated])}>
+        }}>
         {isPending ? (
           'Just a sec...'
         ) : (
           <>
-            Checkout <Check className="ml-1 w-5" />
+            Place <Text className="hidden ml-1.5 sm:inline">Order</Text>
+            <Check className="ml-1 w-5" />
           </>
         )}
       </Button>

@@ -95,12 +95,14 @@ export class Http {
   }
 
   static logError(
-    error: any,
+    error: Error,
     action?: (arg: HttpStatusProps) => Action<HttpStatusProps>
   ) {
-    const message = /network|connection|internet/i.test(error.message || error)
+    const message = /network|connection|internet/i.test(
+      typeof error === 'string' ? error : error.message
+    )
       ? "Hm.🤔 Something went wrong. Kindly check that you're connected to the internet."
-      : error.message || error;
+      : (error.message || error).toString();
 
     if (message) {
       if (action) {
@@ -116,7 +118,7 @@ export class Http {
         snackbar({
           open: true,
           message: navigator.onLine
-            ? `${message[0].toUpperCase()}${message.slice(1)}`
+            ? `${message[0].toUpperCase() || ''}${message.slice(1)}`
             : 'You are offline.',
           severity:
             navigator.onLine && !/network|connect|internet/i.test(message)

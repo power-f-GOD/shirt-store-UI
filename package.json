@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "rm -rf .next && pnpm type-check && next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "pnpm build && next start",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "lint": "prettier '(src/**/*.{tsx,ts,js}|*.{tsx,ts,js})' --write && eslint --ext js,jsx,ts,tsx --fix && next lint",
     "test": "jest",

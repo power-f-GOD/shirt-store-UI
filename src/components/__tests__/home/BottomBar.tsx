@@ -9,7 +9,12 @@ jest.mock('next/navigation', () => require('next-router-mock'));
 it('renders BottomBar component unchanged', () => {
   const { container } = render(
     <ReduxProvider store={store}>
-      <BottomBar item_count={20} />
+      <BottomBar
+        item_count={20}
+        onOrderCreated={() => {
+          console.log('Created!');
+        }}
+      />
     </ReduxProvider>
   );
 

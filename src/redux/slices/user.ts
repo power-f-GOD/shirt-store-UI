@@ -4,14 +4,16 @@ import { httpStatusPropsState } from 'src/constants/misc';
 import { FetchProps } from 'src/types';
 import { APIUserProps } from 'src/types/user';
 
+const initialState: FetchProps<APIUserProps> = {
+  ...httpStatusPropsState,
+  data: {
+    _id: '',
+    username: ''
+  }
+};
+
 export const userSlice = createSlice({
-  initialState: {
-    ...httpStatusPropsState,
-    data: {
-      _id: '',
-      username: ''
-    }
-  } as FetchProps<APIUserProps>,
+  initialState,
   name: 'user',
   reducers: {
     user: (state, { payload }: PayloadAction<FetchProps<APIUserProps>>) => {
@@ -20,7 +22,8 @@ export const userSlice = createSlice({
         ...payload,
         data: { ...state.data, ...payload.data }
       };
-    }
+    },
+    reset: () => initialState
   }
 });
 

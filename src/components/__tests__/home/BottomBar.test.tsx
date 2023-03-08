@@ -11,7 +11,12 @@ describe('BottomBar', () => {
   it('renders the Shirt Store BottomBar', async () => {
     const { container, findByText } = render(
       <ReduxProvider store={store}>
-        <BottomBar item_count={20} />
+        <BottomBar
+          item_count={20}
+          onOrderCreated={() => {
+            console.log('Created!');
+          }}
+        />
       </ReduxProvider>
     );
     const bottomBar = container.querySelector('footer');

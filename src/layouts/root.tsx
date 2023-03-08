@@ -57,7 +57,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <Text as="h1">Shirt Store</Text>
           </Link>
           {user?.authenticated && (
-            <Stack className="Root__username relative max-w-[30%] py-3">
+            <Stack className="Root__username anim__fadeIn relative max-w-[30%] py-3">
               <Stack className=" flex-row items-center gap-1.5">
                 <Text as="small" className="truncate">
                   {user?.username}

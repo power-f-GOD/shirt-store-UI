@@ -10,6 +10,7 @@ describe('Card', () => {
       <Card
         index={0}
         price={8.0}
+        isReset={false}
         dispatch={(...args) => {
           console.log(args);
         }}

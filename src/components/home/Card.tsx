@@ -1,4 +1,4 @@
-import { memo, FC, useCallback, Dispatch, useState } from 'react';
+import { memo, FC, useCallback, Dispatch, useState, useEffect } from 'react';
 import { IconButton } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
 
@@ -12,10 +12,12 @@ const _Card: FC<
   Partial<APIShirtProps> & {
     index: number;
     initialCount?: number;
+    isReset: boolean;
     dispatch: Dispatch<Action>;
   }
 > = (props) => {
-  const { name, image_url, index, price, initialCount, dispatch } = props;
+  const { name, image_url, index, price, initialCount, isReset, dispatch } =
+    props;
   const [count, setCount] = useState(initialCount || 0);
 
   const handleChangeItem = useCallback(
@@ -38,6 +40,10 @@ const _Card: FC<
     },
     [name, dispatch]
   );
+
+  useEffect(() => {
+    if (isReset) setCount(0);
+  }, [isReset]);
 
   return (
     <Stack

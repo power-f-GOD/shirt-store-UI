@@ -16,13 +16,6 @@ export const useAuthGuard = () => {
   useEffect(() => {
     const isAuthRoute = location.pathname.includes('/auth');
 
-    console.log({
-      isAuthRoute,
-      isAuthenticated,
-      isLoading,
-      pathname,
-      l: location.pathname
-    });
     if (
       isLoading ||
       (isAuthRoute && !isAuthenticated) ||
@@ -30,9 +23,6 @@ export const useAuthGuard = () => {
     ) {
       return;
     }
-
-    // if (pathname === location.pathname) {
-    // }
 
     router.replace(isAuthenticated ? '/' : '/auth');
     // eslint-disable-next-line react-hooks/exhaustive-deps

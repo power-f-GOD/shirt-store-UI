@@ -1,25 +1,25 @@
 import { PayloadAction, combineReducers } from '@reduxjs/toolkit';
 
 import { miscReducers, ordersReducers, seedReducers, userReducers } from '.';
-import { StateProps } from '../store';
 
 export * from './misc';
 export * from './orders';
 export * from './seed';
 export * from './user';
 
+const appReducer = combineReducers({
+  ...miscReducers,
+  ...ordersReducers,
+  ...seedReducers,
+  ...userReducers
+});
+
 export const rootReducer = (state: any, action: PayloadAction<any>) => {
-  if (action.type === 'user/user' && action.payload.authenticated === false) {
-    state = {
-      // shirts: state.shirts,
-      snackbar: state.snackbar
-    } as StateProps;
+  const { snackbar, shirts } = state || {};
+
+  if (action.type === 'store/reset') {
+    return appReducer({ snackbar, shirts } as any, action);
   }
 
-  return combineReducers({
-    ...miscReducers,
-    ...ordersReducers,
-    ...seedReducers,
-    ...userReducers
-  })(state, action);
+  return appReducer(state, action);
 };

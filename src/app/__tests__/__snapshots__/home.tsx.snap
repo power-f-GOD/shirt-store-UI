@@ -566,7 +566,12 @@ exports[`Home renders Home component unchanged 1`] = `
       tabindex="-1"
       type="button"
     >
-      Checkout 
+      Place 
+      <span
+        class="Text hidden ml-1.5 sm:inline"
+      >
+        Order
+      </span>
       <svg
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium ml-1 w-5 css-i4bv87-MuiSvgIcon-root"

@@ -38,6 +38,7 @@ export const authenticateUser = async (_data: {
     localStorage.setItem('token', data?._id || '');
 
     if (!error) {
+      if (_data.type === 'logout') dispatch({ type: 'store/reset' });
       dispatch(
         snackbar({
           open: true,
