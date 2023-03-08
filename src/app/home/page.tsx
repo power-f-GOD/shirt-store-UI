@@ -71,7 +71,6 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [basket.item_count]);
 
-  console.log({ basket, isReset });
   return (
     <>
       <Stack as="main">
