@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { memo, FC, useEffect } from 'react';
 
 import { Stack, Text } from 'src/components/shared';
-import { dispatch, orders, useTypedSelector } from 'src/redux';
+import { dispatch, orders, snackbar, useTypedSelector } from 'src/redux';
 import { createOrder } from 'src/services';
 import { BasketProps } from 'src/types';
 import { formatNumber, isEmptyObject } from 'src/utils';
@@ -98,6 +98,14 @@ const _BottomBar: FC<
         onClick={() => {
           if (!authenticated) {
             dispatch(orders({ extra: { __placed: true }, status: 'pending' }));
+            dispatch(
+              snackbar({
+                open: true,
+                severity: 'info',
+                message:
+                  "Kindly authenticate.🤲🏼 Afterwards, we'll place your order.📝 PS. You can still go back and update just in case."
+              })
+            );
             setTimeout(() => router.push('/auth'), 500);
           } else {
             createOrder({ items }, onOrderCreated);

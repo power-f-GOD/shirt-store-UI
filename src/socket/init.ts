@@ -44,7 +44,7 @@ export const initSocket = (onAfterInit?: (socket: SocketProps) => void) => {
     dispatch(
       snackbar({
         ...baseSnackbarProps,
-        message: "You're now connected!",
+        message: "You're now connected!😎",
         autoHide: true,
         severity: 'success'
       })
@@ -56,7 +56,7 @@ export const initSocket = (onAfterInit?: (socket: SocketProps) => void) => {
     dispatch(
       snackbar({
         ...baseSnackbarProps,
-        message: "You're disconnected.",
+        message: "You're disconnected.💔🥲",
         severity: 'info'
       })
     );
@@ -139,7 +139,7 @@ export const socketEmit = <
       dispatch(
         snackbar({
           ...baseSnackbarProps,
-          message: "Could not send. You're disconnected."
+          message: "Could not send. You're disconnected.💔"
         })
       );
     }
