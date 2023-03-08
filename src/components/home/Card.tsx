@@ -12,12 +12,21 @@ const _Card: FC<
   Partial<APIShirtProps> & {
     index: number;
     initialCount?: number;
+    erred?: boolean;
     isReset: boolean;
     dispatch: Dispatch<Action>;
   }
 > = (props) => {
-  const { name, image_url, index, price, initialCount, isReset, dispatch } =
-    props;
+  const {
+    name,
+    erred,
+    image_url,
+    index,
+    price,
+    initialCount,
+    isReset,
+    dispatch
+  } = props;
   const [count, setCount] = useState(initialCount || 0);
 
   const handleChangeItem = useCallback(
@@ -55,13 +64,13 @@ const _Card: FC<
       {image_url ? (
         <Img src={`${IMG_BASE_URL}${image_url}`} alt={`${name} shirt`} />
       ) : (
-        <Skeleton className="w-full h-full" />
+        <Skeleton erred={erred} className="w-full h-full" />
       )}
 
       <Stack
         className={`${S.tray} absolute bottom-0 w-full grid transition-all duration-300 grid-cols-3 flex-row p-5 items-end justify-between pt-5 bg-white/70 backdrop-blur-sm`}>
         <Text as="h2" className="col-span-2 text-xl">
-          {name || <Skeleton height="1em" className="w-full" />}
+          {name || <Skeleton erred={erred} height="1em" className="w-full" />}
         </Text>
 
         <Stack className="ml-auto">
@@ -73,7 +82,7 @@ const _Card: FC<
                 style: 'currency'
               })
             ) : (
-              <Skeleton height="1em" className="-mb-1" />
+              <Skeleton erred={erred} height="1em" className="-mb-1" />
             )}
           </Text>
         </Stack>

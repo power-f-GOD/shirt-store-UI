@@ -101,9 +101,9 @@ export class Http {
     const message = /network|connection|internet/i.test(
       typeof error === 'string' ? error : error.message
     )
-      ? "Hm.🤔 Something went wrong. Kindly check that you're connected to the internet."
+      ? "Hm.🤔 Something went wrong. Kindly check that you're connected to your network."
       : (error.message || error).toString();
-    console.log({ error, message });
+
     if (message) {
       if (action) {
         dispatch(
