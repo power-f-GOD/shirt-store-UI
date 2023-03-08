@@ -10,13 +10,16 @@ import { orders as ordersAction } from 'src/redux/slices/orders';
 import { socketEmit, SocketEventsEnum, SocketPathsEnum } from 'src/socket';
 
 const Home = () => {
-  const { shirts, isReset, shirtsErred } = useTypedSelector(
+  const { shirts, isReset, erred } = useTypedSelector(
     (state) => ({
-      shirtsErred: state.shirts.err,
+      erred: state.shirts.err,
       shirts: state.shirts.data,
       isReset: !state.orders.extra?.item_count
     }),
-    (a, b) => a.isReset === b.isReset && a.shirts?.[0]._id === b.shirts?.[0]._id
+    (a, b) =>
+      a.erred === b.erred &&
+      a.isReset === b.isReset &&
+      a.shirts?.[0]._id === b.shirts?.[0]._id
   );
   const [basket, localDispatch] = useReducer<Reducer<BasketProps, Action>>(
     (
@@ -83,7 +86,7 @@ const Home = () => {
                     key={i}
                     index={i + 1}
                     name={name}
-                    erred={shirtsErred}
+                    erred={erred}
                     isReset={isReset}
                     initialCount={!name ? 0 : basket.items[name]?.count}
                     price={price}
@@ -93,7 +96,7 @@ const Home = () => {
                 );
               },
               // eslint-disable-next-line react-hooks/exhaustive-deps
-              [isReset, shirtsErred]
+              [isReset, erred]
             )
           )}
         </Stack>
