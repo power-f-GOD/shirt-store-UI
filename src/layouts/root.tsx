@@ -10,6 +10,7 @@ import { ThemeProvider } from '@emotion/react';
 import Link from 'next/link';
 import { AccountCircle } from '@mui/icons-material';
 import { Button } from '@mui/material';
+import { usePathname } from 'next/navigation';
 
 import 'src/styles/index.scss';
 import store, { useTypedSelector } from 'src/redux/store';
@@ -23,6 +24,7 @@ import RootStyleRegistry from './__emotion';
 const inter = Armata({ subsets: ['latin'], weight: '400' });
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const pathname = usePathname();
   const user = useTypedSelector(
     (state) => ({
       ...state.user.data,
@@ -53,9 +55,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <Stack
           as="header"
           className="Root z-30 p-5 py-3 my-5 flex-row items-center justify-between gap-2 bg-white/80 backdrop-blur-sm border-b border-0 border-solid border-gray-200 anim__fadeIn md:py-5 lg:py-10 lg:mb-10">
-          <Link href="/" className="no-underline whitespace-nowrap">
-            <Text as="h1">Shirt Store</Text>
-          </Link>
+          <Stack className="flex-row items-center">
+            <Link href="/" className="no-underline whitespace-nowrap">
+              <Text as="h1" className="text-2xl inline md:text-3xl">
+                Shirt Store
+              </Text>
+            </Link>
+            <Text className="ml-1.5 mt-1.5 opacity-40">
+              {pathname === '/' ? '/ home' : pathname.split('/').join('/ ')}
+            </Text>
+          </Stack>
+
           {user?.authenticated && (
             <Stack className="Root__username anim__fadeIn relative max-w-[30%] py-3">
               <Stack className=" flex-row items-center gap-1.5">

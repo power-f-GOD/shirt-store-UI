@@ -95,11 +95,7 @@ const Auth = () => {
           variant="contained"
           type="submit"
           disabled={isLoading}>
-          {isLoading
-            ? status === 'inert'
-              ? 'Please, wait...'
-              : 'Authenticating...'
-            : authType}
+          {isLoading ? 'Please, wait...' : authType}
         </Button>
       </Stack>
     </Stack>

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { shallowEqual } from 'react-redux';
 import { useTypedSelector } from 'src/redux';
 
-export const useAuthGuard = () => {
+export const useAuthGuard = (onAuth?: () => void) => {
   const { status, data } = useTypedSelector(
     (state) => state.user,
     shallowEqual
@@ -27,6 +27,11 @@ export const useAuthGuard = () => {
     router.replace(isAuthenticated ? '/' : '/auth');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isLoading, pathname]);
+
+  useEffect(() => {
+    if (isAuthenticated && onAuth) onAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
 
   return { ...data!, isLoading };
 };

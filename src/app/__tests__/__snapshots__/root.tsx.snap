@@ -535,6 +535,16 @@ exports[`Root renders Root component unchanged 1`] = `
       </li>
     </ul>
   </main>
+  <div
+    class="Stack flex flex-col p-5 w-full text-end mt-10"
+  >
+    <a
+      class="no-underline text-primary hover:underline focus:underline"
+      href="/orders"
+    >
+      My Orders &gt;&gt;
+    </a>
+  </div>
   <footer
     class="Stack flex sticky bottom-0 z-30 p-5 py-3 mt-20 flex-row w-full max-w-xl mx-auto justify-between items-center bg-white/90 backdrop-blur-sm border-t border-b-0 border-solid border-gray-200 rounded-tl-2xl rounded-tr-2xl anim__fadeInUpBig sm:rounded-2xl sm:bottom-8 sm:border sm:shadow-lg sm:shadow-black/5 lg:mt-24 lg:py-4"
     style="animation-delay: 1s;"

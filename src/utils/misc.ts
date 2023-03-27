@@ -9,5 +9,8 @@ export const formatNumber = (
 };
 
 export const log = (...message: any) => {
-  console.log(`[${new Date().toISOString()}]:`, ...message);
+  console.log(
+    `\x1b[35m[${new Date().toISOString().slice(0, -1).replace('T', ', ')}]:`,
+    ...message
+  );
 };

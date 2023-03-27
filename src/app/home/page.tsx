@@ -1,6 +1,7 @@
 'use client';
 
 import { Reducer, useCallback, useEffect, useReducer } from 'react';
+import Link from 'next/link';
 
 import { Stack } from 'src/components/shared/Stack';
 import { Card, BottomBar } from 'src/components/home';
@@ -99,6 +100,14 @@ const Home = () => {
             )
           )}
         </Stack>
+      </Stack>
+
+      <Stack className="p-5 w-full text-end mt-10">
+        <Link
+          href="/orders"
+          className="no-underline text-primary hover:underline focus:underline">
+          My Orders &gt;&gt;
+        </Link>
       </Stack>
 
       <BottomBar
